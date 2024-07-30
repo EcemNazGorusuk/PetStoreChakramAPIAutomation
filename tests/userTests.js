@@ -50,7 +50,7 @@ describe("User Test", function () {
   });
 
 
-  //LOGIN TESTİ
+  //LOGIN TEST
   it("login", function () {
     const qsBody={
       "username":"berk",
@@ -62,6 +62,40 @@ describe("User Test", function () {
     return chakram.wait();
   });
 
+  //LOGOUT TEST
+  it("logout", function () {
+    const response = chakram.get("https://petstore.swagger.io/v2/user/logout");
+    //gelen status code doğruluğunu teyit etmek
+    expect(response).to.have.status(200); //ok
+    return chakram.wait();
+  });
+
+
+   //UPDATE USER TEST
+   it("updateUser", function () {
+    const requestBody={
+      "id": 1,
+      "username": "berk",
+      "firstName": "Berk",
+      "lastName": "Akkavak",
+      "email": "berkakkavak@outlook.com", //updated
+      "password": "12345",
+      "phone": "1231454534",
+      "userStatus": 0
+    }
+    const response = chakram.put("https://petstore.swagger.io/v2/user/berk",requestBody);
+    //gelen status code doğruluğunu teyit etmek
+    expect(response).to.have.status(200); //ok
+    return chakram.wait();
+  });
+
+    //DELETE TEST
+    it("deleteUser", function () {
+      const response = chakram.delete("https://petstore.swagger.io/v2/user/berk");
+      //gelen status code doğruluğunu teyit etmek
+      expect(response).to.have.status(200); //ok
+      return chakram.wait();
+    });
   
 });
 
