@@ -12,9 +12,30 @@ const chakram = require("chakram"),
 */
 
 describe("User Test", function () {
+
+   //USER CREATE TEST
+   it("userCreate", function () {
+    const requestBody = {
+      id: 1,
+      username: "berk",
+      firstName: "Berk",
+      lastName: "Akkavak",
+      email: "berkak@gmail.com",
+      password: "12345",
+      phone: "1231454534",
+      userStatus: 0,
+    };
+    const response = chakram.post(
+      "https://petstore.swagger.io/v2/user",
+      requestBody
+    );
+    expect(response).to.have.status(200); //ok
+    return chakram.wait();
+  });
+
+
   //GET USER INFO TEST
   it("getUserInfo", function () {
-
     const requestBody = {
       id: 1,
       username: "berk",
@@ -34,27 +55,8 @@ describe("User Test", function () {
     return chakram.wait();
   });
 
-  //USER CREATE TEST
-  it("userCreate", function () {
-    const requestBody = {
-      id: 1,
-      username: "berk",
-      firstName: "Berk",
-      lastName: "Akkavak",
-      email: "berkak@gmail.com",
-      password: "12345",
-      phone: "1231454534",
-      userStatus: 0,
-    };
-    const response = chakram.post(
-      "https://petstore.swagger.io/v2/user",
-      requestBody
-    );
-    expect(response).to.have.status(200); //ok
-    return chakram.wait();
-  });
 
-  //GET WRONG USER TEST
+  //GET WRONG USER INFO TEST
   it("getWrongUserInfo", function () {
     const response = chakram.get("https://petstore.swagger.io/v2/user/ecem1");
     expect(response).to.have.status(404); //not found
