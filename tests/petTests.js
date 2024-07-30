@@ -31,8 +31,6 @@ describe("Pet Test", function () {
     return chakram.wait();
   });
 
-
-
   //GET PET TEST
   it("/v2/pet getPet", function () {
     // const requestBody = {
@@ -61,7 +59,6 @@ describe("Pet Test", function () {
     return chakram.wait();
   });
 
-
   //UPDATE PET TEST
   it("/v2/pet updatePet", function () {
     const requestBody = {
@@ -89,8 +86,6 @@ describe("Pet Test", function () {
     expect(response).to.have.status(200); //ok
     return chakram.wait();
   });
-
-
 
   //DELETE TEST
   it("/v2/pet deletePet", function () {
