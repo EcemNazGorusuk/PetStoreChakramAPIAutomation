@@ -27,7 +27,7 @@ describe("User Test", function () {
     };
 
     const response = chakram.post("https://petstore.swagger.io/v2/user",requestBody); //hata almamak için
-    expect(response).to.have.status(200); //gelen status code doğruluğunu teyit etmek
+    expect(response).to.have.status(200); //gelen status code doğruluğunu teyit etmek için
 
     const response2 = chakram.get("https://petstore.swagger.io/v2/user/berk");
     expect(response2).to.have.status(200); //ok
@@ -140,7 +140,7 @@ describe("User Test", function () {
   });
 
    //CREATE WITH ARRAY TEST
-   it("createWithList", function () {
+   it("createWithArray", function () {
     const requestBody = [{
       "id": 11,
       "username": "cenk",
