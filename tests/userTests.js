@@ -14,9 +14,23 @@ const chakram = require("chakram"),
 describe("User Test", function () {
   //GET USER INFO TEST
   it("getUserInfo", function () {
-    const response = chakram.get("https://petstore.swagger.io/v2/user/berk");
-    //gelen status code doğruluğunu teyit etmek
-    expect(response).to.have.status(200); //ok
+
+    const requestBody = {
+      id: 1,
+      username: "berk",
+      firstName: "Berk",
+      lastName: "Akkavak",
+      email: "berkak@gmail.com",
+      password: "12345",
+      phone: "1231454534",
+      userStatus: 0,
+    };
+
+    const response = chakram.post("https://petstore.swagger.io/v2/user",requestBody); //hata almamak için
+    expect(response).to.have.status(200); //gelen status code doğruluğunu teyit etmek
+
+    const response2 = chakram.get("https://petstore.swagger.io/v2/user/berk");
+    expect(response2).to.have.status(200); //ok
     return chakram.wait();
   });
 
@@ -36,7 +50,6 @@ describe("User Test", function () {
       "https://petstore.swagger.io/v2/user",
       requestBody
     );
-    //gelen status code doğruluğunu teyit etmek
     expect(response).to.have.status(200); //ok
     return chakram.wait();
   });
@@ -44,7 +57,6 @@ describe("User Test", function () {
   //GET WRONG USER TEST
   it("getWrongUserInfo", function () {
     const response = chakram.get("https://petstore.swagger.io/v2/user/ecem1");
-    //gelen status code doğruluğunu teyit etmek
     expect(response).to.have.status(404); //not found
     return chakram.wait();
   });
@@ -58,7 +70,6 @@ describe("User Test", function () {
     const response = chakram.get("https://petstore.swagger.io/v2/user/login", {
       qs: qsBody,
     });
-    //gelen status code doğruluğunu teyit etmek
     expect(response).to.have.status(200); //ok
     return chakram.wait();
   });
@@ -66,7 +77,6 @@ describe("User Test", function () {
   //LOGOUT TEST
   it("logout", function () {
     const response = chakram.get("https://petstore.swagger.io/v2/user/logout");
-    //gelen status code doğruluğunu teyit etmek
     expect(response).to.have.status(200); //ok
     return chakram.wait();
   });
@@ -87,7 +97,6 @@ describe("User Test", function () {
       "https://petstore.swagger.io/v2/user/berk",
       requestBody
     );
-    //gelen status code doğruluğunu teyit etmek
     expect(response).to.have.status(200); //ok
     return chakram.wait();
   });
@@ -95,7 +104,6 @@ describe("User Test", function () {
   //DELETE TEST
   it("deleteUser", function () {
     const response = chakram.delete("https://petstore.swagger.io/v2/user/berk");
-    //gelen status code doğruluğunu teyit etmek
     expect(response).to.have.status(200); //ok
     return chakram.wait();
   });
@@ -127,7 +135,6 @@ describe("User Test", function () {
       "https://petstore.swagger.io/v2/user/createWithList",
       requestBody
     );
-    //gelen status code doğruluğunu teyit etmek
     expect(response).to.have.status(200); //ok
     return chakram.wait();
   });
@@ -159,7 +166,6 @@ describe("User Test", function () {
       "https://petstore.swagger.io/v2/user/createWithArray",
       requestBody
     );
-    //gelen status code doğruluğunu teyit etmek
     expect(response).to.have.status(200); //ok
     return chakram.wait();
   });
